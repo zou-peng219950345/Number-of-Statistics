@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define M 100
+int Find(char *a,char *find);                         
+int main()
+{
+    
+    char a[M],find[M];
+    scanf("%[^\n]",a);                                 //输入任意字符串
+    printf("请输入需要计算次数的词汇:");
+    scanf("%s",find);
+    printf("%s出现了%d次\n",find,Find(a,find));        //调用Find函数
+    
+    return 0;
+}
+
+
+int Find(char *a,char *find)
+{
+	int m=0;
+ 
+ char *p=find;
+ while(*a)                                       //直至a字符串中字符读取完毕时停止
+ {
+    if(*a==*p)                                   
+    {
+        p++;
+        if(*p==NULL&&*(a+1)==' '||*(a+1)==NULL)  //当p指向’\0’时计数
+        {
+          m++;
+          p=find;                                //使p指向find中的首字符
+        }
+    }
+    else
+    {
+        p=find;
+    }
+  a++;
+ }
+ return m;
+}
